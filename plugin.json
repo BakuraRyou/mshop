@@ -1,14 +1,14 @@
 {
-    "version"           :   "4.6.0",
+    "version"           :   "5.0.17",
     "license"           :   "MIT",
-    "name"              :   "MandaTheme",
+    "name"              :   "MandaTheme5",
     "shortDescription"  :   { "de": "", "en": "TODO add manually" },
-    "namespace"         :   "MandaTheme",
+    "namespace"         :   "MandaTheme5",
     "author"            :   "felixries.de | Online Marketing",
     "price"             :   0,
     "categories"        :   [3518],
     "type"              :   "theme",
-    "serviceProvider"   :   "MandaTheme\\Providers\\MandaThemeServiceProvider",
+    "serviceProvider"   :   "MandaTheme5\\Providers\\MandaThemeServiceProvider",
     "dataProviders"     :
     [
         {
