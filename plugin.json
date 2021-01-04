@@ -1,0 +1,20 @@
+{
+    "version"           :   "4.6.0",
+    "license"           :   "MIT",
+    "name"              :   "MandaTheme",
+    "shortDescription"  :   { "de": "", "en": "TODO add manually" },
+    "namespace"         :   "MandaTheme",
+    "author"            :   "felixries.de | Online Marketing",
+    "price"             :   0,
+    "categories"        :   [3518],
+    "type"              :   "theme",
+    "serviceProvider"   :   "MandaTheme\\Providers\\MandaThemeServiceProvider",
+    "dataProviders"     :
+    [
+        {
+            "key"           :"MandaTheme\\Containers\\MandaThemeContainer",
+            "name"          :"Generated plugin container",
+            "description"   :"Add changes to the CSS file"
+        }
+    ]
+}

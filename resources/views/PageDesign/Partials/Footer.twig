@@ -1,0 +1,191 @@
+{% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
+
+{% set numberOfCols = config('Ceres.footer.number_of_cols') %}
+{% set colSize = (12 / (numberOfCols + 1)) %}
+{% set displayedCategories = [] %}
+{% set numberOfFeatures = config('Ceres.footer.number_of_features') %}
+{% set topButtonPosition = config('Ceres.footer.to_top_button') %}
+
+{% set footerContainer = LayoutContainer.show("Ceres::Footer") | trim %}
+{% if footerContainer is empty %}
+
+<hr>
+<div class="footer pt-5 p-b-6 mb-3">
+    <div class="{% if topButtonPosition == "right" %}back-to-top{% else %}back-to-top-center{% endif %} hidden-sm-down">
+        <i class="fa fa-chevron-up"></i>
+    </div>
+
+    <div class="to-top d-md-none" v-scroll-to-top>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </div>
+
+    <div class="container-max footer-content">
+        <div class="row">
+            <hr class="my-4">
+            <div class="col-12 col-sm-4 col-lg-4">
+                <nav class="footer-column mb-4">
+                    <span class="footerHeadline">{{ trans('MandaTheme::Template.mandaFooterShop') }}</span>
+                    <hr>
+
+                    <div class="row align-items-center">
+                        <div class="col col-sm-12 col-md my-3">
+                            <lazy-img class="img-fluid" image-url="https://cdn02.plentymarkets.com/fzraxqjvapo5/frontend/manda/startseite/paypal-vorkasse.jpg"></lazy-img>
+                        </div>
+                        <div class="col col-sm-12 col-md">
+                            <lazy-img class="img-fluid" image-url="https://cdn02.plentymarkets.com/fzraxqjvapo5/frontend/cyroline/static/greenpeace-logo.jpg"></lazy-img>
+                        </div>
+                    </div>
+                    <ul class="list-unstyled">
+
+                        {% set footerCategories = config('Ceres.footer.col_1_categories') | find("[0-9]+") %}
+                        {% for catID in footerCategories %}
+
+                            {% set cat = services.category.get(catID, lang) %}
+
+                            {% if cat is not null %}
+                                {% set displayedCategories = displayedCategories | merge([catID]) %}
+                                <li>
+                                    <a href="{{ services.category.getURL( cat ) }}">
+                                        {{ cat.details.first.name }}</a>
+                                </li>
+                            {% endif %}
+
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+
+             <div class="col-12 col-sm-4 col-lg-4">
+                    <nav class="footer-column mb-4">
+                        <span class="footerHeadline">{{ trans('MandaTheme::Template.mandaFooterMyAccount') }}</span>
+                        <hr>
+                        <ul class="list-unstyled">
+
+                            {% set footerCategories = "128,132" | find("[0-9]+") %}
+                            {% for catID in footerCategories %}
+                                {% set cat = services.category.get(catID, lang) %}
+                                {% if cat is not null %}
+                                    {% set displayedCategories = displayedCategories | merge([catID]) %}
+                                    <li>
+                                        <a href="{{ services.category.getURL( cat ) }}">
+                                            {{ cat.details.first.name }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+
+                            {% set cat = services.category.get(config('Ceres.global.category.legal_disclosure')) %}
+                            {% autoescape false %}
+                               <li><a href="{{ urls.cancellationRights }}">{{ trans("Ceres::Template.footerCancellationRight", {"hyphen": "&shy;"}) }}</a></li>
+                                {% if config("Ceres.footer.cancellation_use_pdf") == "true" %}
+                                    <li><a href="{{ config('Ceres.footer.cancellation_pdf_path') }}" target="_blank">{{ trans("Ceres::Template.footerCancellationForm", {"hyphen": "&shy;"}) }}</a></li>
+                                {% else %}
+                                {% endif %}
+                                <li><a href="{{ urls.legalDisclosure }}">{{ trans("Ceres::Template.footerLegalDisclosure") }}</a></li>
+                            <li><a href="{{ urls.privacyPolicy }}">{{ trans("Ceres::Template.footerPrivacyPolicy", {"hyphen": "&shy;"}) }}</a></li>
+                            <li><a href="{{ urls.gtc }}">{{ trans("Ceres::Template.footerGtc") }}</a></li>
+                                {% if (config("Ceres.contact.shop_mail") | length > 0 and config("Ceres.contact.shop_mail") != "your@email.com") or config('IO.routing.category_contact') > 0 %}
+                            <li><a href="{{ urls.contact }}">{{ trans("Ceres::Template.footerContact") }}</a></li>
+                                {% endif %}
+                                <li><a href="/my-account">{{ trans('MandaTheme::Template.mandaFooterMyAccountLink') }}</a></li>
+                            {% endautoescape %}
+                        </ul>
+                    </nav>
+             </div>
+
+            <div class="col-12 col-sm-4 col-lg-4">
+                <nav class="footer-column mb-4" id="socialIcons">
+                    <span class="footerHeadline">{{ trans('MandaTheme::Template.mandaFooterService') }}</span>
+                    <hr>
+                    {% if config('MandaTheme.basics.instagram') is not empty %}
+                    <a class="fa fa-stack" title="{{ config('MandaTheme.basics.category') }} bei Instagram" target="_blank" href="{{ config('MandaTheme.basics.instagram') }}" rel="nofollow">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-instagram fa-stack-1x" aria-hidden="true"></i>
+                    </a>
+                    {% endif %}
+                    {% if config('MandaTheme.basics.youtube') is not empty %}
+                    <a class="fa fa-stack" title="{{ config('MandaTheme.basics.category') }} bei YouTube" target="_blank" href="{{ config('MandaTheme.basics.youtube') }}" rel="nofollow">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-youtube fa-stack-1x" aria-hidden="true"></i>
+                    </a>
+                    {% endif %}
+                    {% if config('MandaTheme.basics.twitter') is not empty %}
+                        <a class="fa fa-stack" title="{{ config('MandaTheme.basics.category') }} bei Twitter" target="_blank" href="{{ config('MandaTheme.basics.twitter') }}" rel="nofollow">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-twitter fa-stack-1x" aria-hidden="true"></i>
+                        </a>
+                    {% endif %}
+                    <ul class="list-unstyled">
+
+                        {% set footerCategories = config('Ceres.footer.col_3_categories') | find("[0-9]+") %}
+                        {% for catID in footerCategories %}
+
+                            {% set cat = services.category.get(catID, lang) %}
+
+                            {% if cat is not null %}
+                                {% set displayedCategories = displayedCategories | merge([catID]) %}
+                                <li>
+                                    <a href="{{ services.category.getURL( cat ) }}">
+                                        {{ cat.details.first.name }}</a>
+                                </li>
+                            {% endif %}
+
+                        {% endfor %}
+
+                    </ul>
+                </nav>
+            </div>
+
+            <hr class="d-sm-none my-4">
+            <div class="col-6 col-sm-3">
+                <div class="footer-column">
+                    {{ LayoutContainer.show("Ceres::Footer.RowOne") }}
+                </div>
+            </div>
+            <div class="col-12 col-sm-3">
+                <div class="footer-column row">
+                    {% set rowTwo = LayoutContainer.show("Ceres::Footer.RowTwo") %}
+
+                    {{ rowTwo }}
+
+                    <div class="col-12{% if rowTwo|trim is not empty %} col-sm-6 col-lg-12{% endif %}">
+                        {{ LayoutContainer.show("Ceres::Footer.RowThree") }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright text-center my-3">
+            <hr>
+            <br>
+            {% set shippingLink = "" %}
+            {% set cat = services.category.get(ceresConfig.global.shippingCostsCategoryId , lang) %}
+            {% if cat is not null %}
+                {% set shippingLink = services.category.getURL( cat ) %}
+            {% endif %}
+            <small>
+                {{ trans("MandaTheme::Template.mandaFooterHint1") }}
+                <a  href="{{ shippingLink }}" title="{{ trans("Ceres::Template.itemShippingCosts") }}">{{ trans("Ceres::Template.itemShippingCosts") }}</a>{{ trans("MandaTheme::Template.mandaFooterHint2") }}
+            </small><br>
+            <small>{{ trans("MandaTheme::Template.mandaFooterHint3") }}</small><br>
+            <small>&copy; Copyright {{ "now" | date("Y") }} Cyroline Textil GmbH. {{ trans("Ceres::Template.footerAllRightsReserved") }}</small>
+        </div>
+    </div>
+</div>
+{% else %}
+    <div class="footer container-max">
+        <div class="row">
+            <div class="col clearfix">
+                {{ footerContainer | raw }}
+            </div>
+        </div>
+        <div class="{% if topButtonPosition == "right" %}back-to-top{% else %}back-to-top-center{% endif %} hidden-sm-down">
+            <i class="fa fa-chevron-up"></i>
+        </div>
+
+        <div class="row">
+            <div class="to-top d-md-none" v-scroll-to-top>
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+{% endif %}

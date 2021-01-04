@@ -1,0 +1,71 @@
+{{ component( "Ceres::Basket.Components.BasketPreviewHover" ) }}
+{% set companyLogo  = config("Ceres.header.company_logo") %}
+{% set showHeaderNavBar = config("Ceres.header.show_navbars") %}
+{% set companyName  = trans("Ceres::Template.headerCompanyName") %}
+{% set useMegaMenu  = config("Ceres.header.megamenu_levels") > 1 %}
+
+<nav class="navbar header-fw{% if useMegaMenu %} megamenu{% endif %}">
+    <div class="container-fluid">
+
+        <a class="navbar-brand" id="centered-menu" href="{{ homepageURL }}">
+            {% if ('http' in companyLogo) or ('layout/' in companyLogo) %}
+                <img alt="{{ companyName }}" src="{{ companyLogo }}" class="img-fluid"/>
+            {% else %}
+                <img alt="{{ companyName }}" src="{{ plugin_path('Ceres') }}/{{ companyLogo }}" class="img-fluid"/>
+            {% endif %}
+        </a>
+
+        <div id="mainNavbarCollapsable" class="d-none d-lg-block">
+            {% if showHeaderNavBar == "top" or showHeaderNavBar == "both" or not services.template.isCategory() %}
+                {% include "MandaTheme::PageDesign.Partials.Header.NavigationList" %}
+            {% endif %}
+
+        </div>
+        <ul id="controlsList" class="controls-list list-inline pull-lg-right">
+            {% if services.url.isRouteEnabled("wish-list") %}
+                <li class="list-inline-item control-wish-list order-last order-lg-first">
+                    <wish-list-count>
+                        <a>
+                            <span class="badge-right">0</span>
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        </a>
+                    </wish-list-count>
+                </li>
+            {% endif %}
+            <li class="absolute-language">
+                <a data-toggle="collapse" href="#countrySettings" aria-expanded="false"
+                   aria-controls="countrySettings"
+                   data-parent="#controlsList">
+                    <i class="flag-icon flag-icon-{{ lang }}"></i>
+                </a>
+            </li>
+            <li class="list-inline-item control-basket">
+                <a v-toggle-basket-preview href="#" class="toggle-basket-preview">
+                    {% if config("Ceres.header.basket_values") != "sum" %}
+                        <span class="badge-right"
+                              v-basket-item-quantity="$store.state.basket.data.itemQuantity">0</span>
+                    {% endif %}
+                    <i v-waiting-animation="$store.state.basket.isBasketLoading" waiting-class="fa fa-refresh fa-spin"
+                       class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    {% if config("Ceres.header.basket_values") != "quantity" %}
+                        <span class="badge" v-if="!$store.state.basket.showNetPrices"
+                              v-basket-item-sum="$store.state.basket.data.itemSum">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
+                        <span class="badge" v-else v-cloak
+                              v-basket-item-sum="$store.state.basket.data.itemSumNet">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
+                    {% endif %}
+                </a>
+                {% if config("Ceres.basket.preview_type") != "right" %}
+                    <basket-preview template="#vue-basket-preview-hover"
+                                    :show-net-prices="{{ showNetPrices | json_encode }}"></basket-preview>
+                {% endif %}
+            </li>
+
+            <li>
+                <button id="btnMainMenuToggler" v-open-mobile-navigation class="navbar-toggler d-lg-none" type="button">
+                    &#9776;
+                </button>
+            </li>
+        </ul>
+    </div>
+</nav>
+

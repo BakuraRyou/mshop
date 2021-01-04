@@ -1,0 +1,84 @@
+{
+    "formatVersion": 1,
+    "menu": {
+      "Config.GrundeinstellungenTab": {
+        "label": "Config.GrundeinstellungenTab",
+        "formFields": {
+          "basics.name": {
+            "type": "inputText",
+            "required": false,
+            "label": "Config.basicsNameLabel",
+            "options": {
+              "tooltip": "Config.basicsNameTooltip"
+            }
+          },
+          "category.collection": {
+            "type": "inputText",
+            "required": false,
+            "label": "Config.categoryCollectionLabel",
+            "options": {
+              "tooltip": "Config.categoryCollectionTooltip"
+            }
+          },
+          "category.about": {
+            "type": "inputText",
+            "required": false,
+            "label": "Config.categoryAboutLabel",
+            "options": {
+              "tooltip": "Config.categoryAboutTooltip"
+            }
+          },
+          "basics.homepagePath":{
+            "type": "inputText",
+            "required": false,
+            "label": "Config.basicsHomepagePathLabel",
+            "options": {
+              "tooltip": "Config.basicsHomepagePathTooltip"
+            }
+          },
+          "basics.category": {
+            "type": "categoryPicker",
+            "required": false,
+            "label": "Config.basicsCategoryLabel",
+            "options": {
+              "tooltip": "Config.basicsCategoryTooltip"
+            }
+          },
+          "basics.youtube": {
+            "type": "inputText",
+            "required": false,
+            "label": "Config.basicsYoutubeLabel",
+            "options": {
+              "tooltip": "Config.basicsYoutubeTooltip"
+            }
+          },
+          "basics.instagram": {
+            "type": "inputText",
+            "required": false,
+            "label": "Config.basicsInstagramLabel",
+            "options": {
+              "tooltip": "Config.basicsInstagramTooltip"
+            }
+          },
+          "basics.twitter": {
+            "type": "inputText",
+            "required": false,
+            "label": "Config.basicsTwitterLabel",
+            "options": {
+              "tooltip": "Config.basicsTwitterTooltip"
+            }
+          },
+          "dev.cssPath": {
+            "type": "inputText",
+            "required": false,
+            "label": "Config.cssPathTextLabel",
+            "options": {
+              "tooltip": "Config.cssPathTooltip",
+              "defaultValue": ""
+            }
+          }
+        }
+      }
+    }
+  }
+  

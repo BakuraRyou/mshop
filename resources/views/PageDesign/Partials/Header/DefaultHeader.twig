@@ -1,0 +1,97 @@
+{% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
+
+<header id="page-header" class="top-bar fixed-top">
+        <div>
+            <div class="meta-nav">
+                <a data-toggle="modal" href="#shippingscosts">{{ trans("MandaTheme::Template.mandaHeaderClaim") }}</a>
+            </div>
+            {{ LayoutContainer.show("Ceres::Header.LeftSide") }}
+            {% include "MandaTheme::PageDesign.Partials.Header.Navigation" %}
+        </div>
+</header>
+
+<div id="page-separator"></div>
+<!-- breadcrumb -->
+{% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() %}
+    {% include "Ceres::PageDesign.Partials.Header.Breadcrumb" %}
+{% endif %}
+
+<div class="container-max page-header">
+    <div class="row mx-0">
+        <div id="searchBox" class="cmp cmp-search-box collapse">
+            {% set overrideSearchBar = LayoutContainer.show("Ceres::Search.SearchBar") %}
+            {% if overrideSearchBar | trim is empty %}
+                <item-search template="#vue-item-search"></item-search>
+            {% else %}
+                {{ overrideSearchBar | raw }}
+            {% endif %}
+        </div>
+
+        {% if enableCurrencySelect == "true" %}
+            <div id="currencySelect" class="cmp cmp-currency-select collapse">
+                <div class="container-max">
+                    <div class="row p-3">
+
+                        <div class="currency-list col-12">
+                            <div class="list-title">
+                                <strong>{{ trans("Ceres::Template.headerCurrency") }}</strong>
+                                <hr>
+                            </div>
+                            <ul class="text-center text-sm-left">
+                                {% for currency in services.checkout.getCurrencyList() if currency.name in activeCurrencies or activeCurrencies[0] == 'all' or currency.name == services.checkout.getCurrencyData().name %}
+                                    <li{% if currency.name == services.checkout.getCurrencyData().name %} class="active"{% endif %}>
+                                        <a href="{{ queryString({"currency": currency.name}) }}" rel="nofollow">
+                                            {% if currencyFormatSelect == 'all' %}
+                                                {{ currency.name }} <br class="d-block d-sm-none" />({{ currency.symbol }})
+                                            {% else %}
+                                                {{ currency[currencyFormatSelect] }}
+                                            {% endif %}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <div id="countrySettings" class="cmp cmp-country-settings collapse">
+            <div class="container-max">
+                <div class="row p-3">
+                    <div class="col-12 col-lg-6">
+
+                        <div class="language-settings">
+                            <div class="list-title">
+                                <strong>{{ trans("Ceres::Template.headerSelectLanguage") }}</strong>
+                                <hr>
+                            </div>
+
+                            {% set languageList = services.webstoreConfig.getActiveLanguageList() %}
+                            {% set languageUrls = services.url.getLanguageURLs() %}
+                            <ul>
+                                {% for language in languageList %}
+                                    <li{% if lang == language %} class="active"{% endif %}>
+                                        <a href="{% if languageUrls[language] is defined %}{{ languageUrls[language] ~ queryString() }}{% elseif language != defaultLanguage %}/{{ language }}{{ urls.trailingSlashSuffix }}{% else %}/{% endif %}" data-update-url>
+                                            <i class="flag-icon flag-icon-{{ language }}"></i>
+                                            {{ trans("Ceres::Template.header" ~ language | capitalize) }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="shipping-settings">
+                            <div class="list-title">
+                                <strong>{{ trans("Ceres::Template.headerSelectShippingCountry") }}</strong>
+                                <hr>
+                            </div>
+                            <shipping-country-select :disable-input="{{ services.template.isCheckout() | json_encode() }}"></shipping-country-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
