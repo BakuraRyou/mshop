@@ -41,7 +41,6 @@
     "item.storeSpecial",
     "itemId",
     "properties.*",
-    "properties.surcharge",
     "texts.*",
     "unit.content",
     "unit.names.lang",

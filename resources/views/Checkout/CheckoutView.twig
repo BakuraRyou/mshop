@@ -136,8 +136,7 @@
                                     <div class="shipping-method-select">
                                         <shipping-profile-select
                                                 :payment-container-is-overwritten="{{ isOverwritten | json_encode }}"
-                                        ></shipping-profile-select>
-                                    </div>
+                                        ></shipping-profile-select>                                    </div>
                                 {% else %}
                                     {{ overrideShippingProfiles }}
                                 {% endif %}
@@ -146,7 +145,6 @@
                                 <header class="mb-3">
                                     <h3>{{ trans("Ceres::Template.checkoutPaymentMethod") }}</h3>
                                 </header>
-
                                 {{ LayoutContainer.show("Ceres::Checkout.BeforePaymentList") }}
                                 {% if not isOverwritten %}
                                     <div class="payment-method-select">
@@ -183,14 +181,14 @@
                                     </div>
                                     <hr>
                                     <div class="hidden"><coupon></coupon>
-                                    <hr class="mb-0">
+                                        <hr class="mb-0">
                                     </div>
                                 </div>
                             </aside>
                         </div>
 
 
-                    <div class="col-12 py-3 bg-white">
+                        <div class="col-12 py-3 bg-white">
                             <aside class="sidebar">
                                 <div class="cmp cmp-checkout-sidebar">
                                     {{ LayoutContainer.show("Ceres::Checkout.BeforeBasketTotals") }}
@@ -200,17 +198,17 @@
                             </aside>
 
                             <shipping-privacy-hint-check></shipping-privacy-hint-check>
-                                <accept-gtc-check></accept-gtc-check>
+                            <accept-gtc-check></accept-gtc-check>
                             {{ LayoutContainer.show("Ceres::Checkout.OptIns") }}
                             {{ LayoutContainer.show("Ceres::Checkout.BeforePlaceOrder") }}
                             <place-order target-continue="{{ homepageURL }}{% if homepageURL | last != '/'%}/{% endif %}place-order{% if urls.appendTrailingSlash %}/{% endif %}{% if services.checkout.getReadOnlyCheckout() == 1 %}?readonlyCheckout=1{% endif %}" @payment-response="checkoutComp.showModal($event)"></place-order>
                             {{ LayoutContainer.show("Ceres::Checkout.AfterPlaceOrder") }}
 
-                        {% if checkout.readOnly %}
-                            <a class="btn btn-block btn-outline-primary mt-3" href="{{ urls.checkout }}?readonlyCheckout=0">
-                                <i class="fa fa-times" aria-hidden="true"></i> {{ trans("Ceres::Template.checkoutCancelCheckout") }}
-                            </a>
-                        {% endif %}
+                            {% if checkout.readOnly %}
+                                <a class="btn btn-block btn-outline-primary mt-3" href="{{ urls.checkout }}?readonlyCheckout=0">
+                                    <i class="fa fa-times" aria-hidden="true"></i> {{ trans("Ceres::Template.checkoutCancelCheckout") }}
+                                </a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
