@@ -1,12 +1,12 @@
-{% import "MandaTheme::Category.Macros.CategoryTree" as Tree %}
+{% import "MandaTheme5::Category.Macros.CategoryTree" as Tree %}
 {% set overUsText= "uns" %}
-{% if "mich" in config("MandaTheme.category.about") %}
+{% if "mich" in config("MandaTheme5.category.about") %}
     {% set overUsText= "mich" %}
 {% endif %}
 <ul class="mainmenu pull-lg-left">
     <li><a href="/">Home</a></li>
-    {% if config("MandaTheme.category.collection") %}<li><a href="{{ config("MandaTheme.category.collection") }}">Shop</a></li>{% endif %}
-    {% if config("MandaTheme.category.about") %}<li><a href="{{ config("MandaTheme.category.about") }}">Über {{ overUsText }}</a></li>{% endif %}
+    {% if config("MandaTheme5.category.collection") %}<li><a href="{{ config("MandaTheme5.category.collection") }}">Shop</a></li>{% endif %}
+    {% if config("MandaTheme5.category.about") %}<li><a href="{{ config("MandaTheme5.category.about") }}">Über {{ overUsText }}</a></li>{% endif %}
     {{ Tree.get_nav_bar(
         categories,
         "",

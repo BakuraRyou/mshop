@@ -1,6 +1,6 @@
 <?php
 
-namespace MandaTheme\Providers;
+namespace MandaTheme5\Providers;
 
 use Plenty\Plugin\ServiceProvider;
 use Plenty\Plugin\Events\Dispatcher;
@@ -14,10 +14,10 @@ use IO\Services\ItemSearch\Helper\ResultFieldTemplate;
 
 
 /**
- * Class MandaThemeServiceProvider
- * @package MandaTheme\Providers
+ * Class MandaTheme5ServiceProvider
+ * @package MandaTheme5\Providers
  */
-class MandaThemeServiceProvider extends ServiceProvider
+class MandaTheme5ServiceProvider extends ServiceProvider
 {
     const PRIORITY = 0;
 
@@ -31,65 +31,65 @@ class MandaThemeServiceProvider extends ServiceProvider
 
         $dispatcher->listen( 'IO.ResultFields.*', function(ResultFieldTemplate $templateContainer) {
             $templateContainer->setTemplates([
-                ResultFieldTemplate::TEMPLATE_SINGLE_ITEM   => 'MandaTheme::ResultFields.SingleItem'
+                ResultFieldTemplate::TEMPLATE_SINGLE_ITEM   => 'MandaTheme5::ResultFields.SingleItem'
             ]);
         }, 0);
 
 
         $dispatcher->listen('IO.tpl.home.category', function (TemplateContainer $container) {
-            $container->setTemplate('MandaTheme::Homepage.HomepageCategory');
+            $container->setTemplate('MandaTheme5::Homepage.HomepageCategory');
             return false;
         }, self::PRIORITY);
 
 
         $dispatcher->listen('IO.Resources.Import', function (ResourceContainer $container) {
-            $container->addStyleTemplate('MandaTheme::Theme');
+            $container->addStyleTemplate('MandaTheme5::Theme');
         }, self::PRIORITY);
 
         $dispatcher->listen('IO.init.templates', function (Partial $partial) {
-            $partial->set('footer', 'MandaTheme::PageDesign.Partials.Footer');
-            $partial->set('header', 'MandaTheme::PageDesign.Partials.Header.Header');
+            $partial->set('footer', 'MandaTheme5::PageDesign.Partials.Footer');
+            $partial->set('header', 'MandaTheme5::PageDesign.Partials.Header.Header');
             return false;
         }, 0);
 
         // Override CategoryItem
         $dispatcher->listen('IO.tpl.category.item', function (TemplateContainer $container) {
-            $container->setTemplate('MandaTheme::Category.Item.CategoryItem');
+            $container->setTemplate('MandaTheme5::Category.Item.CategoryItem');
             return false;
         }, self::PRIORITY);
 
         $dispatcher->listen('IO.tpl.checkout', function (TemplateContainer $container) {
-            $container->setTemplate('MandaTheme::Checkout.CheckoutView');
+            $container->setTemplate('MandaTheme5::Checkout.CheckoutView');
             return false;
         }, self::PRIORITY);
 
         $dispatcher->listen('IO.Component.Import', function (ComponentContainer $container) {
             if ($container->getOriginComponentTemplate() == 'Ceres::ItemList.Components.ItemList') {
-                $container->setNewComponentTemplate('MandaTheme::ItemList.Components.ItemList');
+                $container->setNewComponentTemplate('MandaTheme5::ItemList.Components.ItemList');
             }
 
             if ($container->getOriginComponentTemplate() == 'Ceres::ItemList.Components.CategoryItem') {
-                $container->setNewComponentTemplate('MandaTheme::ItemList.Components.CategoryItem');
+                $container->setNewComponentTemplate('MandaTheme5::ItemList.Components.CategoryItem');
             }
 
             if ($container->getOriginComponentTemplate() == 'Ceres::Item.Components.SingleItem') {
-                $container->setNewComponentTemplate('MandaTheme::Item.Components.SingleItem');
+                $container->setNewComponentTemplate('MandaTheme5::Item.Components.SingleItem');
             }
 
             if ($container->getOriginComponentTemplate() == 'Ceres::Item.Components.ItemImageCarousel') {
-                $container->setNewComponentTemplate('MandaTheme::Item.Components.ItemImageCarousel');
+                $container->setNewComponentTemplate('MandaTheme5::Item.Components.ItemImageCarousel');
             }
 
             if ($container->getOriginComponentTemplate() == 'Ceres::PageDesign.Components.MobileNavigation') {
-                $container->setNewComponentTemplate('MandaTheme::PageDesign.Components.MobileNavigation');
+                $container->setNewComponentTemplate('MandaTheme5::PageDesign.Components.MobileNavigation');
             }
 
             if ($container->getOriginComponentTemplate() == 'Ceres::Basket.Components.AddToBasket') {
-                $container->setNewComponentTemplate('MandaTheme::Basket.Components.AddToBasket');
+                $container->setNewComponentTemplate('MandaTheme5::Basket.Components.AddToBasket');
             }
 
             if ($container->getOriginComponentTemplate() == 'Ceres::Customer.Components.LoginView') {
-                $container->setNewComponentTemplate('MandaTheme::Customer.Components.LoginView');
+                $container->setNewComponentTemplate('MandaTheme5::Customer.Components.LoginView');
             }
 
             return false;

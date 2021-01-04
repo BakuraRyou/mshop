@@ -8,11 +8,11 @@
     "price"             :   0,
     "categories"        :   [3518],
     "type"              :   "theme",
-    "serviceProvider"   :   "MandaTheme5\\Providers\\MandaThemeServiceProvider",
+    "serviceProvider"   :   "MandaTheme5\\Providers\\MandaTheme5ServiceProvider",
     "dataProviders"     :
     [
         {
-            "key"           :"MandaTheme\\Containers\\MandaThemeContainer",
+            "key"           :"MandaTheme5\\Containers\\MandaTheme5Container",
             "name"          :"Generated plugin container",
             "description"   :"Add changes to the CSS file"
         }

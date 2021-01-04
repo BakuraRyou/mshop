@@ -24,7 +24,7 @@
             <hr class="my-4">
             <div class="col-12 col-sm-4 col-lg-4">
                 <nav class="footer-column mb-4">
-                    <span class="footerHeadline">{{ trans('MandaTheme::Template.mandaFooterShop') }}</span>
+                    <span class="footerHeadline">{{ trans('MandaTheme5::Template.mandaFooterShop') }}</span>
                     <hr>
 
                     <div class="row align-items-center">
@@ -57,7 +57,7 @@
 
              <div class="col-12 col-sm-4 col-lg-4">
                     <nav class="footer-column mb-4">
-                        <span class="footerHeadline">{{ trans('MandaTheme::Template.mandaFooterMyAccount') }}</span>
+                        <span class="footerHeadline">{{ trans('MandaTheme5::Template.mandaFooterMyAccount') }}</span>
                         <hr>
                         <ul class="list-unstyled">
 
@@ -86,7 +86,7 @@
                                 {% if (config("Ceres.contact.shop_mail") | length > 0 and config("Ceres.contact.shop_mail") != "your@email.com") or config('IO.routing.category_contact') > 0 %}
                             <li><a href="{{ urls.contact }}">{{ trans("Ceres::Template.footerContact") }}</a></li>
                                 {% endif %}
-                                <li><a href="/my-account">{{ trans('MandaTheme::Template.mandaFooterMyAccountLink') }}</a></li>
+                                <li><a href="/my-account">{{ trans('MandaTheme5::Template.mandaFooterMyAccountLink') }}</a></li>
                             {% endautoescape %}
                         </ul>
                     </nav>
@@ -94,22 +94,22 @@
 
             <div class="col-12 col-sm-4 col-lg-4">
                 <nav class="footer-column mb-4" id="socialIcons">
-                    <span class="footerHeadline">{{ trans('MandaTheme::Template.mandaFooterService') }}</span>
+                    <span class="footerHeadline">{{ trans('MandaTheme5::Template.mandaFooterService') }}</span>
                     <hr>
-                    {% if config('MandaTheme.basics.instagram') is not empty %}
-                    <a class="fa fa-stack" title="{{ config('MandaTheme.basics.category') }} bei Instagram" target="_blank" href="{{ config('MandaTheme.basics.instagram') }}" rel="nofollow">
+                    {% if config('MandaTheme5.basics.instagram') is not empty %}
+                    <a class="fa fa-stack" title="{{ config('MandaTheme5.basics.category') }} bei Instagram" target="_blank" href="{{ config('MandaTheme5.basics.instagram') }}" rel="nofollow">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-instagram fa-stack-1x" aria-hidden="true"></i>
                     </a>
                     {% endif %}
-                    {% if config('MandaTheme.basics.youtube') is not empty %}
-                    <a class="fa fa-stack" title="{{ config('MandaTheme.basics.category') }} bei YouTube" target="_blank" href="{{ config('MandaTheme.basics.youtube') }}" rel="nofollow">
+                    {% if config('MandaTheme5.basics.youtube') is not empty %}
+                    <a class="fa fa-stack" title="{{ config('MandaTheme5.basics.category') }} bei YouTube" target="_blank" href="{{ config('MandaTheme5.basics.youtube') }}" rel="nofollow">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-youtube fa-stack-1x" aria-hidden="true"></i>
                     </a>
                     {% endif %}
-                    {% if config('MandaTheme.basics.twitter') is not empty %}
-                        <a class="fa fa-stack" title="{{ config('MandaTheme.basics.category') }} bei Twitter" target="_blank" href="{{ config('MandaTheme.basics.twitter') }}" rel="nofollow">
+                    {% if config('MandaTheme5.basics.twitter') is not empty %}
+                        <a class="fa fa-stack" title="{{ config('MandaTheme5.basics.category') }} bei Twitter" target="_blank" href="{{ config('MandaTheme5.basics.twitter') }}" rel="nofollow">
                             <i class="fa fa-circle fa-stack-2x"></i>
                             <i class="fa fa-twitter fa-stack-1x" aria-hidden="true"></i>
                         </a>
@@ -163,10 +163,10 @@
                 {% set shippingLink = services.category.getURL( cat ) %}
             {% endif %}
             <small>
-                {{ trans("MandaTheme::Template.mandaFooterHint1") }}
-                <a  href="{{ shippingLink }}" title="{{ trans("Ceres::Template.itemShippingCosts") }}">{{ trans("Ceres::Template.itemShippingCosts") }}</a>{{ trans("MandaTheme::Template.mandaFooterHint2") }}
+                {{ trans("MandaTheme5::Template.mandaFooterHint1") }}
+                <a  href="{{ shippingLink }}" title="{{ trans("Ceres::Template.itemShippingCosts") }}">{{ trans("Ceres::Template.itemShippingCosts") }}</a>{{ trans("MandaTheme5::Template.mandaFooterHint2") }}
             </small><br>
-            <small>{{ trans("MandaTheme::Template.mandaFooterHint3") }}</small><br>
+            <small>{{ trans("MandaTheme5::Template.mandaFooterHint3") }}</small><br>
             <small>&copy; Copyright {{ "now" | date("Y") }} Cyroline Textil GmbH. {{ trans("Ceres::Template.footerAllRightsReserved") }}</small>
         </div>
     </div>
