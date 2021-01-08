@@ -1,10 +1,10 @@
 {
-    "version"           :   "5.0.17",
+    "version"           :   "5.0.19",
     "license"           :   "MIT",
     "name"              :   "MandaTheme5",
     "shortDescription"  :   { "de": "", "en": "TODO add manually" },
     "namespace"         :   "MandaTheme5",
-    "author"            :   "felixries.de | Online Marketing",
+    "author"            :   "felixries.de | Online Marketing edited by Erik Heldt",
     "price"             :   0,
     "categories"        :   [3518],
     "type"              :   "theme",
